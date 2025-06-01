@@ -1,0 +1,25 @@
+header.main-header{
+    background: linear-gradient(rgba(6, 243, 192, 0.26),rgba(5, 211, 149, 0.301)), url("/static/img/bg1.jpg");
+    background-size: cover;
+    background-position: center;
+}
+header.login-header{
+    background: url("/static/img/login-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+header.signup-header{
+    background: url("/static/img/signup-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+header.signup-header form{
+    background: #ffffff6e;
+    backdrop-filter: blur(10px);
+}
+
+header.login-header form{
+    background: #ffffff9c;
+    backdrop-filter: blur(10px);
+}
