@@ -1,13 +1,18 @@
 from django.shortcuts import render, redirect
 from account.forms import LoginForm, SignupForm
 from django.contrib.auth import authenticate, login
+from base.utils import HandleUsers
 
 # Home View 
 def home(request):
+    if request.user.is_authenticated:
+       return HandleUsers.dispetch(request)
     return render(request,"base.html")
 
 # Login View 
 def login_page(request):
+    if request.user.is_authenticated:
+        return redirect("home")
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -22,6 +27,8 @@ def login_page(request):
 
 # Signup View 
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect("home")
     if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():

@@ -23,3 +23,16 @@ header.login-header form{
     background: #ffffff9c;
     backdrop-filter: blur(10px);
 }
+header.operator-header{
+    background: url("/static/img/bg2.jpg");
+    background-size: cover;
+}
+#id_gender{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+header.operator-header form{
+    background: #ffffffb4;
+    backdrop-filter: blur(10px);
+}

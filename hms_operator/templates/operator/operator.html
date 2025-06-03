@@ -1,0 +1,83 @@
+{% extends "base.html" %} {% block content %}
+<header class="min-h-[90vh] w-full operator-header">
+  <div class="w-1/2 h-full p-10">
+    <form class="w-100% p-5 rounded-xl" method="post" novalidate>
+      {% csrf_token %}
+      <h1 class="text-3xl text-center py-3">New Patient</h1>
+      <div class="p-1 w-full flex items-center gap-4 mt-3">
+        <label for="{{form.full_name.id_for_label}}" class="w-44"
+          >{{form.full_name.label}} :
+        </label>
+        {{form.full_name}}
+      </div>
+      {% if form.full_name.errors %} {% for error in form.full_name.errors %}
+      <span class="text-red-800 ml-42 mt-2">{{error}}</span>
+      {% endfor %} {% endif %}
+      <div class="p-1 w-full flex items-center gap-4 mt-3">
+        <label for="{{form.age.id_for_label}}" class="w-44"
+          >{{form.age.label}} :
+        </label>
+        {{form.age}}
+      </div>
+      {% if form.age.errors %} {% for error in form.age.errors %}
+      <span class="text-red-800 ml-42 mt-2">{{error}}</span>
+      {% endfor %} {% endif %}
+      <div class="p-1 w-full flex items-center gap-4 mt-3">
+        <label for="{{form.gender.id_for_label}}" class="w-44"
+          >{{form.gender.label}} :
+        </label>
+        {{form.gender}}
+      </div>
+      {% if form.gender.errors %} {% for error in form.gender.errors %}
+      <span class="text-red-800 ml-42 mt-2">{{error}}</span>
+      {% endfor %} {% endif %}
+      <div class="p-1 w-full flex items-center gap-4 mt-3">
+        <label for="{{form.region.id_for_label}}" class="w-44"
+          >{{form.region.label}} :
+        </label>
+        {{form.region}}
+      </div>
+      {% if form.region.errors %} {% for error in form.region.errors %}
+      <span class="text-red-800 ml-42 mt-2">{{error}}</span>
+      {% endfor %} {% endif %}
+      <div class="p-1 w-full flex items-center gap-4 mt-3">
+        <label for="{{form.email.id_for_label}}" class="w-44"
+          >{{form.email.label}} :
+        </label>
+        {{form.email}}
+      </div>
+      {% if form.email.errors %} {% for error in form.email.errors %}
+      <span class="text-red-800 ml-42 mt-2">{{error}}</span>
+      {% endfor %} {% endif %}
+      <div class="p-1 w-full flex items-center gap-4 mt-3">
+        <label for="{{form.phone.id_for_label}}" class="w-44"
+          >{{form.phone.label}} :
+        </label>
+        {{form.phone}}
+      </div>
+      {% if form.phone.errors %} {% for error in form.phone.errors %}
+      <span class="text-red-800 ml-42 mt-2">{{error}}</span>
+      {% endfor %} {% endif %}
+      <div class="p-1 w-full flex items-center gap-4 mt-3">
+        <label for="{{form.cnic.id_for_label}}" class="w-44"
+          >{{form.cnic.label}} :
+        </label>
+        {{form.cnic}}
+      </div>
+      {% if form.cnic.errors %} {% for error in form.cnic.errors %}
+      <span class="text-red-800 ml-42 mt-2">{{error}}</span>
+      {% endfor %} {% endif %}
+      <div class="p-1 w-full flex items-center gap-4 mt-3">
+        <label for="{{form.prefered_doctor.id_for_label}}" class="w-44"
+          >{{form.prefered_doctor.label}} :
+        </label>
+        {{form.prefered_doctor}}
+      </div>
+      {% if form.prefered_doctor.errors %} {% for error in form.prefered_doctor.errors %}
+      <span class="text-red-800 ml-42 mt-2">{{error}}</span>
+      {% endfor %} {% endif %}
+      <button type="submit" class="bg-green-800 py-2 px-10 rounded-full my-5 text-white cursor-pointer block">Add Patient +</button>
+    </form>
+  </div>
+</header>
+{% endblock content %}

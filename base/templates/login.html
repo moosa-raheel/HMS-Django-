@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
-<header class="w-full h-[70vh] login-header">
-  <div class="form h-full w-1/2 flex justify-center items-center">
+<header class="w-full min-h-[70vh] login-header ">
+  <div class="form min-h-[70vh] w-1/2 flex justify-center items-center py-10">
     <form
       class="bg-white flex flex-col gap-2 w-[80%] p-10 items-start"
       method="post" novalidate
@@ -21,7 +21,7 @@
        <span class="text-red-800">{{form.non_field_errors | striptags}}</span>
        {% endif %}
       <button
-        class="bg-blue-400 py-3 px-12 text-white font-bold text-xl mt-6"
+        class="bg-blue-400 py-3 px-12 text-white font-bold text-xl mt-6 cursor-pointer"
         type="submit"
       >
         Login
