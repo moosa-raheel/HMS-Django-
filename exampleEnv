@@ -1,0 +1,2 @@
+EMAIL_HOST = "youremailhost@male.com"
+EMAIL_PASS = "email_password"

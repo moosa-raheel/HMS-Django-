@@ -36,3 +36,11 @@ header.operator-header form{
     background: #ffffffb4;
     backdrop-filter: blur(10px);
 }
+@media print{
+    nav{
+        display: none;
+    }
+    .buttons{
+        display: none;
+    }
+}
