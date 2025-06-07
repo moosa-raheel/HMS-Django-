@@ -36,6 +36,12 @@ header.operator-header form{
     background: #ffffffb4;
     backdrop-filter: blur(10px);
 }
+.toastify-success{
+    background: rgb(1, 92, 1) !important;
+}
+.toastify-error{
+    background: rgb(134, 1, 1) !important;
+}
 @media print{
     nav{
         display: none;

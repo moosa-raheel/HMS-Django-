@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from account.forms import LoginForm, SignupForm
 from django.contrib.auth import authenticate, login
 from base.utils import HandleUsers
+from hms_operator.models import Patient
+from django.forms.models import model_to_dict
 
 # Home View 
 def home(request):
@@ -40,3 +42,12 @@ def signup(request):
     else:
         form = SignupForm()
     return render(request, "signup.html", {"form" : form})
+
+# Patient Info View 
+def patient_info(request,id):
+    try:
+        patient = Patient.objects.get(pk=id)
+        patient = model_to_dict(patient)
+    except:
+        patient = None
+    return render(request, "patient_info.html", {"patient" : patient})

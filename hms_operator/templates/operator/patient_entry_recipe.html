@@ -36,7 +36,10 @@
 <div class="buttons flex gap-5">
 <button class="bg-green-700 text-white py-3 px-10 text-lg flex gap-2 items-center font-bold rounded-full mt-5 cursor-pointer">Print <img src="{% static "img/print.png" %}" alt="" class="h-[1.5rem] invert-100 print-btn" onclick="window.print()"></button>
 <button class="bg-yellow-600 text-white py-3 px-10 text-lg flex gap-2 items-center font-bold rounded-full mt-5 cursor-pointer">Edit <img src="{% static "img/edit.png" %}" alt="" class="h-[1.5rem] invert-100 print-btn" onclick="window.print()"></button>
-<button class="bg-red-700 text-white py-3 px-10 text-lg flex gap-2 items-center font-bold rounded-full mt-5 cursor-pointer">Delete <img src="{% static "img/delete.png" %}" alt="" class="h-[1.5rem] invert-100 print-btn" onclick="window.print()"></button>
+<form action="{% url "delete-patient-info" patient.id%}" method="post">
+    {% csrf_token %}
+    <button class="bg-red-700 text-white py-3 px-10 text-lg flex gap-2 items-center font-bold rounded-full mt-5 cursor-pointer">Delete <img src="{% static "img/delete.png" %}" alt="" class="h-[1.5rem] invert-100 print-btn" onclick="window.print()"></button>
+</form>
 </div>
 {% endif %}
 </div>

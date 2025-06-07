@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="w-11/12 mx-auto my-10 print-area">
+    <h1 class="bg-green-600 text-4xl text-center text-white font-bold py-5 rounded-full">Patient Entry Recipe</h1>
+   
+
+<div class="relative overflow-x-auto ">
+    {% if patient %}
+    <table class="w-full  text-left rtl:text-right text-gray-500 dark:text-gray-400 mt-10 text-xl">
+        <tbody>
+            {% for key, value in patient.items %}
+             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                <td class="px-6 py-4 font-bold">
+                    {{key | capfirst}}
+                </td>
+                <td class="px-6 py-4">
+                    {{value}}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h2 class="text-center text-5xl font-bold my-6">No Data Found</h2>
+    {% endif %}
+</div>
+
+
+</div>
+{% endblock content %}
+{% block script %}
+<script>
+    const nav = document.querySelector("nav")
+    nav.style.display = "none"
+</script>
+{% endblock script %}

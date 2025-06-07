@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Email</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background: green;
+            padding: 5vh 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .container{
+            width: 90%;
+            margin: auto;
+            background: #fff;
+            min-height: 90vh;
+            border-radius: 20px;
+            padding: 3vw;
+        }
+        ul{
+            list-style: none;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .container h2{
+            text-align: center;
+            font-size: 8vw;
+            padding: 3vh 0;
+            color: #444;
+        }
+        .note{
+            padding: 5px 3vw;
+        }
+        a{
+            background: green;
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: inline-block;
+        }
+        .info *{
+          margin: 0.6rem 0;
+          font-size: 1.2rem;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Welcome to H.M.S</h2>
+      <div class="info">
+      <p>Dear <strong>{{ patient.full_name }}</strong>,</p>
+
+      <p class="note">
+        We are pleased to inform you that your registration has been
+        successfully completed. Below are your details for confirmation:
+      </p>
+
+      <ul>
+        <li><strong>Patient ID:</strong> {{ patient.id }}</li>
+        <li><strong>Name:</strong> {{ patient.full_name }}</li>
+        <li><strong>Age:</strong> {{ patient.age }}</li>
+        <li><strong>Gender:</strong> {{ patient.gender }}</li>
+        <li><strong>Phone:</strong> {{ patient.phone }}</li>
+      </ul>
+
+      <p>
+        You can view your prescription or medical record by clicking the link
+        below:
+      </p>
+
+      <p>
+        <a
+          href="http://192.168.0.110/operator/patient-info/{{ patient.id }}/"
+          >View Your Medical Record</a
+        >
+      </p>
+
+      <p>
+        If you have any questions or need assistance, please do not hesitate to
+        contact our support team.
+      </p>
+
+      <p>
+        Best regards,<br />
+        </p>
+        <p>
+        <b>HMS Management</b><br />
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

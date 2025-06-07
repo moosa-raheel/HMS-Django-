@@ -1,3 +1,21 @@
-__pycache__
-env
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+env/
+venv/
+
+# Environment variables
 .env
+
+# QR images
+base/static/img/qr/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Django-specific
+db.sqlite3
+*.log

@@ -1,12 +1,13 @@
 import qrcode.constants
 from hms_operator.forms import PatientForm
 from django.shortcuts import render, redirect
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMultiAlternatives
 from os import getenv
 from threading import Thread
 import qrcode
 from pathlib import Path
 import socket
+from django.template.loader import render_to_string
 
 class HandleUsers:
     @staticmethod
@@ -19,28 +20,29 @@ class HandleUsers:
         if request.method == "POST":
             form = PatientForm(request.POST)
             if form.is_valid():
-                email = form.cleaned_data.get("email")
                 instance = form.save()
                 qr_code_generator(instance.id)
                 form = PatientForm()
-                EMAIL_THREAD(email=email).start()
+                EMAIL_THREAD(patient=instance).start()
                 return redirect("patient_recipe", id=instance.id)
         else:
             form = PatientForm()
         return render(request,"operator/operator.html", {"form" : form})
     
-def send_mail(to_email):
-   email = EmailMessage(subject="Checking", body="It's Me Moosa", from_email=getenv("EMAIL_HOST"), to=[to_email])
-   email.content_subtype = "html"
-   email.send()
+def send_mail(patient):
+    html_message = render_to_string("email.html",context={"patient" : patient})
+    subject = f"HMS Registration of {patient.full_name}"
+    email = EmailMultiAlternatives(subject=subject, body=html_message, from_email=getenv("EMAIL_HOST"), to=[patient.email])
+    email.content_subtype = "html"
+    email.send()
    
 class EMAIL_THREAD(Thread):
-    def __init__(self, email):
-        self.to_email = email
+    def __init__(self, patient):
+        self.patient = patient
         Thread.__init__(self)
     
     def run(self):
-        send_mail(self.to_email)
+        send_mail(self.patient)
         
 def qr_code_generator(id):
     qr = qrcode.QRCode(
