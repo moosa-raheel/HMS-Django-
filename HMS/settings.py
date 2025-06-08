@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'base',
     'tailwind',
     'hms_operator',
+    'doctor',
     'theme',
     'django_browser_reload'
 ]
