@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login
 from base.utils import HandleUsers
 from hms_operator.models import Patient
 from django.forms.models import model_to_dict
+from django.contrib import messages
 
 # Home View 
 def home(request):
@@ -38,6 +39,7 @@ def signup(request):
             user = form.save(commit=False)
             user.set_password(password)
             user.save()
+            messages.success(request,"Registration Successfull! Now you can Login")
             return redirect("login")
     else:
         form = SignupForm()

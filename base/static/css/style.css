@@ -42,6 +42,11 @@ header.operator-header form{
 .toastify-error{
     background: rgb(134, 1, 1) !important;
 }
+.doctor-header{
+    background: url('/static/img/bg1.jpg');
+    background-size: cover;
+    background-position: center;
+}
 @media print{
     nav{
         display: none;
@@ -49,4 +54,13 @@ header.operator-header form{
     .buttons{
         display: none;
     }
+}
+.doctor-header form{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.473);
+}
+.span2{
+    grid-column: span 2
 }

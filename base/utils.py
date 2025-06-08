@@ -8,13 +8,20 @@ import qrcode
 from pathlib import Path
 import socket
 from django.template.loader import render_to_string
+from doctor.forms import PatientSearchForm
+from hms_operator.models import Patient
+from django.db.models import Q
+from django.contrib import messages
 
 class HandleUsers:
     @staticmethod
     def dispetch(request):
         if request.user.role == "operator":
             return HandleUsers.handle_operator(request)
+        if request.user.role == "doctor":
+            return HandleUsers.handle_doctor(request)
     
+    # Operator Handler 
     @staticmethod
     def handle_operator(request):
         if request.method == "POST":
@@ -28,6 +35,24 @@ class HandleUsers:
         else:
             form = PatientForm()
         return render(request,"operator/operator.html", {"form" : form})
+    
+    # Doctor Handler 
+    @staticmethod
+    def handle_doctor(request):
+        if request.method == "POST":
+            form = PatientSearchForm(request.POST)
+            if form.is_valid():
+                search = form.cleaned_data.get("search")
+                patient = find_patient(search)
+                print(patient)
+                if not patient:
+                    messages.error(request, "User With this information Does not exist...")
+                else:
+                    return redirect("prescription", id_or_cnic = search)
+                return redirect("home")
+        else:
+            form = PatientSearchForm()
+        return render(request, "doctor/doctor.html", {"form" : form})
     
 def send_mail(patient):
     html_message = render_to_string("email.html",context={"patient" : patient})
@@ -66,3 +91,6 @@ def get_private_ipv4():
     finally:
         s.close()
     return ip
+
+def find_patient(id_or_cnic):
+   return  Patient.objects.filter(Q(pk=id_or_cnic) | Q(cnic=id_or_cnic)).first()
