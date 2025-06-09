@@ -1,4 +1,94 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Prescription</h1>
+<div class="w-11/12 my-5 mx-auto ">
+    <h1 class="text-4xl text-center bg-green-200 p-5">Prescriptions</h1>
+    <form  method="post" class="w-full my-5" novalidate>
+        {% csrf_token %}
+        <div class="flex align-center my-4">
+        <label for="" class="text-lg w-54 flex items-center">Name : </label>
+        <input type="text" class="border border-gray-300 w-full py-2 px-4 text-gray-400" value="{{patient.full_name}}" readonly>
+        </div>
+        <div class="flex align-center my-4">
+        <label for="" class="text-lg w-54 flex items-center">Age : </label>
+        <input type="text" class="border border-gray-300 w-full py-2 px-4 text-gray-400" value="{{patient.age}}" readonly>
+        </div>
+            <div class="flex align-center my-4">
+            <label for="" class="text-lg w-54 flex items-center">Gender : </label>
+            <div class='flex w-full justify-around'>
+            <div class="flex gap-2 items-center">
+                <input type="radio" value="Male" {% if patient.gender == "male" %}checked{% endif %} disabled>
+                <p>Male</p>
+            </div>
+            <div class="flex gap-2 items-center">
+                <input type="radio" value="Male" {% if patient.gender == "female" %}checked{% endif %} disabled>
+                <p>Female</p>
+            </div>
+            <div class="flex gap-2 items-center">
+                <input type="radio" value="Male" disabled {% if patient.gender == "others" %}checked{% endif %}>
+                <p>Others</p>
+            </div>
+            </div>
+        </div>
+            <div class="flex align-center my-4">
+        <label for="" class="text-lg w-54 flex items-center">Region : </label>
+        <input type="text" class="border border-gray-300 w-full py-2 px-4 text-gray-400" value="{{patient.region}}" readonly>
+        </div>
+            <div class="flex align-center my-4">
+        <label for="" class="text-lg w-54 flex items-center">Email : </label>
+        <input type="text" class="border border-gray-300 w-full py-2 px-4 text-gray-400" value="{{patient.email}}" readonly>
+        </div>
+            <div class="flex align-center my-4">
+        <label for="" class="text-lg w-54 flex items-center">phone : </label>
+        <input type="text" class="border border-gray-300 w-full py-2 px-4 text-gray-400" value="{{patient.phone}}" readonly>
+        </div>
+            <div class="flex align-center my-4">
+        <label for="" class="text-lg w-54 flex items-center">C.N.I.C : </label>
+        <input type="text" class="border border-gray-300 w-full py-2 px-4 text-gray-400" value="{{patient.cnic}}" readonly>
+        </div>
+            <div class="flex align-center my-4">
+        <label for="" class="text-lg w-54 flex items-center">Prefered Doctor : </label>
+        <input type="text" class="border border-gray-300 w-full py-2 px-4 text-gray-400" value="{{patient.prefered_doctor}}" readonly>
+        </div>
+
+        <div class="w-full flex align-center my-4">
+        <label for="{{form.disease_name.id_for_label}}" class="text-lg w-54 flex items-center"
+          >{{form.disease_name.label}}:
+        </label>
+        {{form.disease_name}}
+      </div>
+      {% if form.disease_name.errors %} {% for error in form.disease_name.errors %}
+      <span class="text-red-800 ml-48 mt-2">{{error}}</span>
+      {% endfor %} {% endif %}
+
+        <div class="w-full flex align-center my-4">
+        <label for="{{form.prescribed_medicines.id_for_label}}" class="text-lg w-54 flex items-center"
+          >{{form.prescribed_medicines.label}}:
+        </label>
+        {{form.prescribed_medicines}}
+      </div>
+      <p class="ml-48 text-xl text-gray-500 mb-2">{{ form.prescribed_medicines.help_text }}</p>
+      {% if form.prescribed_medicines.errors %} {% for error in form.prescribed_medicines.errors %}
+      <span class="text-red-800 ml-48 mt-2">{{error}}</span>
+      {% endfor %} {% endif %}
+      <div class="flex align-center my-4">
+        <label for="" class="text-lg w-54 flex items-center">Doctor Name : </label>
+        <input type="text" class="border border-gray-300 w-full py-2 px-4 text-gray-400" value="Dr. {{user.first_name}}" readonly>
+        </div>
+        <div class="w-full flex align-center my-4">
+        <label for="{{form.additional_notes.id_for_label}}" class="text-lg w-54 flex items-center"
+          >{{form.additional_notes.label}}:
+        </label>
+        {{form.additional_notes}}
+      </div>
+      {% if form.additional_notes.errors %} {% for error in form.additional_notes.errors %}
+      <span class="text-red-800 ml-48 mt-2">{{error}}</span>
+      {% endfor %} {% endif %}
+        <button
+        class="bg-green-700 py-3 px-12 text-white font-bold text-xl mt-6 rounded-full cursor-pointer"
+        type="submit"
+      >
+        Add Prescriptions
+      </button>
+    </form>
+</div>
 {% endblock content %}

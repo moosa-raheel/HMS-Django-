@@ -2,8 +2,8 @@
 <header class="doctor-header h-[90vh] w-full flex items-center justify-center">
   <form method="post" class="bg-white w-[90%] gap-2 p-4 rounded-lg" novalidate>
     {% csrf_token %} {{form.search}}
-    <button class="text-xl bg-green-800 text-white rounded-r-full flex justify-center gap-2 items-center">
-      Search <img src="{% static "img/search.png" %}" alt="" class="h-[1.5rem] invert-100 print-btn" onclick="window.print()">
+    <button class="text-xl bg-green-800 text-white rounded-r-full flex justify-center gap-2 items-center" type="submit">
+      Search <img src="{% static "img/search.png" %}" alt="" class="h-[1.5rem] invert-100 ">
     </button>
     {% if form.search.errors %} {% for error in form.search.errors %}
     <span class="text-red-800 span2">{{error}}</span>

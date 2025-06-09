@@ -12,4 +12,3 @@ class PatientAdmin(admin.ModelAdmin):
     readonly_fields = ["date", "time"]
     list_filter = ("prefered_doctor", "gender")
     search_fields = ["full_name", "cnic", "phone", "email"]
-    
