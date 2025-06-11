@@ -20,6 +20,8 @@ class HandleUsers:
             return HandleUsers.handle_operator(request)
         if request.user.role == "doctor":
             return HandleUsers.handle_doctor(request)
+        if request.user.role == "compounder":
+            return HandleUsers.handle_compounder(request)
     
     # Operator Handler 
     @staticmethod
@@ -53,6 +55,24 @@ class HandleUsers:
         else:
             form = PatientSearchForm()
         return render(request, "doctor/doctor.html", {"form" : form})
+    
+    # Compounder Handler
+    @staticmethod
+    def handle_compounder(request):
+        if request.method == "POST":
+            form = PatientSearchForm(request.POST)
+            if form.is_valid():
+                search = form.cleaned_data.get("search")
+                patient = find_patient(search)
+                print(patient)
+                if not patient:
+                    messages.error(request, "User With this information Does not exist...")
+                else:
+                    return redirect("prescription_detail", id_or_cnic = search)
+                return redirect("home")
+        else:
+            form = PatientSearchForm()
+        return render(request, "compounder/compounder.html", {"form" : form})
     
 def send_mail(patient):
     html_message = render_to_string("email.html",context={"patient" : patient})

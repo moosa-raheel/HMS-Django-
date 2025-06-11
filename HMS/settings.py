@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'hms_operator',
     'doctor',
     'theme',
+    'compounder',
     'django_browser_reload'
 ]
 

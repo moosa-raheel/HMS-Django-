@@ -47,6 +47,11 @@ header.operator-header form{
     background-size: cover;
     background-position: center;
 }
+.compounder-header{
+    background: url('/static/img/bg3.jpg');
+    background-size: cover;
+    background-position: center;
+}
 @media print{
     nav{
         display: none;
@@ -55,7 +60,7 @@ header.operator-header form{
         display: none;
     }
 }
-.doctor-header form{
+.doctor-header form, .compounder-header form{
     display: grid;
     grid-template-columns: 4fr 1fr;
     backdrop-filter: blur(10px);

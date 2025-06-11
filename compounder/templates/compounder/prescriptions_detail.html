@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="w-11/12 mx-auto my-10 print-area">
+    <h1 class="bg-green-600 lg:text-4xl text-2xl text-center text-white font-bold lg:py-5 py-2 rounded-full">Patient Prescriptions</h1>
+   
+
+<div class="relative overflow-x-auto ">
+    {% if patient %}
+    <table class="w-full text-left rtl:text-right text-gray-500  mt-10 lg:text-xl text:lg">
+        <tbody>
+            {% for key, value in patient.items %}
+             <tr class="bg-white border-b 0 border-gray-200">
+                <td class="lg:px-6 px-3 lg:py-4 py-2 font-bold">
+                    {% if key == "prefered_doctor" %}
+                    Prefered Doctor
+                    {% elif key == "cnic" %}
+                    C.N.I.C
+                    {% elif key == "full_name" %}
+                    Full Name
+                    {% else %}
+                    {{key | capfirst}}
+                    {% endif %}
+                </td>
+                <td class="lg:px-6 px-3 lg:py-4 py-2">
+                    {{value}}
+                </td>
+            </tr>
+            {% endfor %}
+            {% if prescriptions%}
+             <tr class="bg-white border-b 0 border-gray-200">
+                <td class="lg:px-6 px-3 lg:py-4 py-2 font-bold">
+                    Disease Name
+                </td>
+                <td class="lg:px-6 px-3 lg:py-4 py-2">
+                    {{prescriptions.disease_name}}
+                </td>
+            </tr>
+             <tr class="bg-white border-b 0 border-gray-200">
+                <td class="lg:px-6 px-3 lg:py-4 py-2 font-bold">
+                    Prescribed Medicines
+                </td>
+                <td class="lg:px-6 px-3 lg:py-4 py-2">
+                    {{prescriptions.prescribed_medicines}}
+                </td>
+            </tr>
+             <tr class="bg-white border-b 0 border-gray-200">
+                <td class="lg:px-6 px-3 lg:py-4 py-2 font-bold">
+                    Additional Notes
+                </td>
+                <td class="lg:px-6 px-3 lg:py-4 py-2">
+                    {{prescriptions.additional_notes}}
+                </td>
+            </tr>
+             <tr class="bg-white border-b 0 border-gray-200">
+                <td class="lg:px-6 px-3 lg:py-4 py-2 font-bold">
+                    Doctor Name
+                </td>
+                <td class="lg:px-6 px-3 lg:py-4 py-2">
+                     {{prescriptions.doctor_name}}
+                </td>
+            </tr>
+            {% endif %}
+            
+        </tbody>
+    </table>
+    {% else %}
+    <h2 class="text-center text-5xl font-bold my-6">No Data Found</h2>
+    {% endif %}
+    <div class="buttons flex gap-5">
+<button class="bg-green-700 text-white py-3 px-10 text-lg flex gap-2 items-center font-bold rounded-full mt-5 cursor-pointer" onclick="window.print()">Print <img src="{% static "img/print.png" %}" alt="" class="h-[1.5rem] invert-100 print-btn"></button>
+    </div>
+</div>
+
+
+</div>
+{% endblock content %}
