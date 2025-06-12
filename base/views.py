@@ -36,7 +36,12 @@ def signup(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             password = form.cleaned_data.get("password")
+            role = form.cleaned_data.get("role")
             user = form.save(commit=False)
+            if role == "admin":
+                user.is_staff = True
+                user.is_superuser = True
+            user.is_active = True
             user.set_password(password)
             user.save()
             messages.success(request,"Registration Successfull! Now you can Login")

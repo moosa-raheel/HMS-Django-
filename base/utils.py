@@ -22,6 +22,8 @@ class HandleUsers:
             return HandleUsers.handle_doctor(request)
         if request.user.role == "compounder":
             return HandleUsers.handle_compounder(request)
+        if request.user.role == "admin":
+            return redirect("/admin")
     
     # Operator Handler 
     @staticmethod
